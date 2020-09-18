@@ -44,5 +44,46 @@ def intro():
     # then for each line as it loops, it prints the counter variable, followed by a string ' - ', then the value variable
     # which displays the "counter ' - ' header name" or "1 - id"
     
-intro()
+
+def search_database():
+    # this will be a fucntion that allows users to search for players in a database
+    # this is needed as a player may search for Wilson, as in Callum Wilson, but there are multiple players with the last name Wilson
+    # this will return each player with 'Wilson' in there name, allowing them to specify the correct player
+    
+    df = pd.read_csv('fifa_cleaned.csv')
+    player_data = df['name']
+    # converts data frame into a series that includes just the column with header 'name'
+    print("Here you can search for stats belonging to a certain player")
+    print("First we must make sure you are searching for the correct player")
+    # explains what is needed before we search for the stats
+    
+    desired_player = (input(str("Input the player you want to search for: "))).capitalize()
+    # gets a string input from the user to determine the player they want to search for
+    # capitalize() is a function that capitalises the first letter, as each name in the dadtabase has a capital first letter, so this is needed to match properly
+    list_of_players_found = []
+    # defines a list of the players that will be found on the upcoming search on the users input
+    for index, player_name in player_data.items():
+    # iterates through the series, assigning the index the variable index and the data in the column 'name' to the variable 'player_name'
+        if desired_player in player_name:
+            # if statement, if the string that the user entered is contained in one of the values in the 'name' column
+            # rather than use the "player_name = value", this function will check if the string is contained within
+            # meaning players with similiar names, but no exact to the user input, can be found
+            list_of_players_found.append(player_name)
+            # if a name is found, it is added onto the list defined above
+            # append adds to end, rather than overwriting
+
+    if len(list_of_players_found) != 0:
+        # if statement checks that list is not empty
+        # a list of length 0 would mean it is empty, as there are no entries. A empty list would mean no players found
+        print("\nPlayers found: \n")
+        print('\n'.join(list_of_players_found))
+        # this join() function, displays the list without the brackets, but seperates them but '\n' which leaves a line
+        # makes it more readable and user friendly
+    else:
+        print("\nThis name was not found in the database")
+        # prints no players found as the list length was zero
+        
+"""intro()"""
 # calls/executes the intro() function
+""""search_database()"""
+# calls/executes the search_database() function
