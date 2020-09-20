@@ -83,7 +83,27 @@ def search_database():
         print("\nThis name was not found in the database")
         # prints no players found as the list length was zero
         
+def get_player_stats():
+    desired_player = input(str("Enter a player's name to see their statistics: "))
+    pd.set_option('display.max_rows', None)
+    player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+    # this saves just the column 'name' to the 'player_stats' variable. This means just the player names
+    player_stats = player_stats_column.loc[desired_player]
+    # .loc method accesses a group of rows and columns by a label. Previously defined just the 'name' column. This allows us to search by 'name'
+    # so we pass a parameter, say 'L. Messi' this searches the previous data frame that stores just the player names column
+    # .loc will then access all data belonging to 'L.Messi' name. We then print this data. Assigns this to the 'player_stats' column
+    print("\n")
+    # print empty line to make displayed data more readable
+    for index, value in player_stats.items():
+        # iterates through the panda series 'player_stats'. Assigns the index column to the variable index and the corresponding statistic to the variable value
+        print(f"{index} - {value}")
+        # f string format
+        # curly brackets represent what will be replaced. In this case index and value variables are placed in the string within the curly brackets
+        # this function iterates through each index and corresponding value, prints the value followed by the dash followed by the statistic
+   
 """intro()"""
 # calls/executes the intro() function
 """"search_database()"""
 # calls/executes the search_database() function
+"""get_player_stats()"""
+# calls/executes the get_player_stats() function
