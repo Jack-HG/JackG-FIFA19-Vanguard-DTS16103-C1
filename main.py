@@ -100,10 +100,47 @@ def get_player_stats():
         # f string format
         # curly brackets represent what will be replaced. In this case index and value variables are placed in the string within the curly brackets
         # this function iterates through each index and corresponding value, prints the value followed by the dash followed by the statistic
-   
+
+def get_ingame_stats():
+    while True:
+        try:
+            desired_player = (input(str("Input the player you want to search for: ")))
+            if desired_player == "EXIT":
+                break
+            player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+            player_stats = player_stats_column.loc[desired_player]
+            ingame_stats = player_stats[['crossing', 'finishing', 'heading_accuracy', 'short_passing', 'volleys', 'dribbling', 'curve', 'freekick_accuracy', 'long_passing', 'ball_control', 'acceleration', 'sprint_speed', 'agility', 'reactions', 'balance', 'shot_power', 'jumping', 'stamina', 'strength', 'long_shots', 'aggression', 'interceptions', 'positioning', 'vision', 'penalties', 'composure', 'marking', 'standing_tackle', 'GK_diving', 'GK_handling', 'GK_kicking', 'GK_positioning', 'GK_reflexes']] 
+            print("\nHere are the statistics for '" + desired_player + "': \n")
+            for index, value in ingame_stats.items():
+                print(f"{index} - {value}")
+            break
+        except:
+            print("\nThat was no valid player name. Try again or enter 'EXIT' to stop the application.")        
+    
+def get_player_info():
+    while True:
+        try:
+            desired_player = (input(str("Input the player you want to search for: ")))
+            if desired_player == "EXIT":
+                break
+            player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+            player_stats = player_stats_column.loc[desired_player]
+            ingame_stats = player_stats[['birth_date', 'age', 'height_cm', 'weight_kgs', 'positions', 'nationality', 'overall_rating', 'potential', 'preferred_foot', 'international_reputation(1-5)', 'weak_foot(1-5)', 'skill_moves(1-5)', 'work_rate', 'body_type', 'tags', 'traits']] 
+            print("\nHere is the player information for '" + desired_player + "': \n")
+            for index, value in ingame_stats.items():
+                print(f"{index} - {value}")
+            break
+        except:
+            print("\nThat was no valid player name. Try again or enter 'EXIT' to stop the application.")        
+    
 """intro()"""
 # calls/executes the intro() function
 """"search_database()"""
 # calls/executes the search_database() function
 """get_player_stats()"""
 # calls/executes the get_player_stats() function
+""""get_ingame_stats()"""
+# calls/executes the get_ingame_stats() function
+"""get_player_info()"""
+# calls/executes the get_player_info() function
+
