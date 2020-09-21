@@ -12,6 +12,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # imports the matplotlib.pyplot library and assigns to plt
 # used this module for display graphs about data
+import math
+# imported to use pi
 
 def intro():
     # defines the function for the introduction of the user
@@ -156,12 +158,173 @@ def get_career_mode_info():
             print("Try again or enter 'EXIT' to stop the application.")  
 
 
-pace = ['acceleration', 'sprint_speed']
-shooting = ['postioning', 'finishing', 'shot_power', 'long_shots', 'volleys', 'penalties']
-passing = ['vision', 'crossing', 'freekick_accuracy', 'short_passing', 'long_passing', 'curve']
-driblling = ['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']
-defedning = ['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']
-physicality = ['jumping', 'stamina', 'strength', 'aggression']
+def compare_player_stats():
+    desired_player = "L. Messi"
+    player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+    player_stats = player_stats_column.loc[desired_player]
+    pace = player_stats[['acceleration', 'sprint_speed']]
+    shooting = player_stats[['positioning', 'finishing', 'shot_power', 'long_shots', 'volleys', 'penalties']]
+    passing = player_stats[['vision', 'crossing', 'freekick_accuracy', 'short_passing', 'long_passing', 'curve']]
+    dribbling = player_stats[['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']]
+    defending = player_stats[['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']]
+    physicality = player_stats[['jumping', 'stamina', 'strength', 'aggression']]
+
+    #display radar chart of specific values - this one is pace
+    pace_categories = ['acceleration', 'sprint_speed']
+    N = len(pace_categories)
+    values_of_categories = []
+    for index, value in pace.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], pace_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(pace_categories)
+    #print(values_of_categories)
+    
+    
+    
+    # display radar chart of specific values - this one is pace
+    shooting_categories = ['positioning', 'finishing', 'shot_power', 'long_shots', 'volleys', 'penalties']
+    N = len(shooting_categories)
+    values_of_categories = []
+    for index, value in shooting.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], shooting_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(shooting_categories)
+    #print(values_of_categories)
+    
+    
+    # display radar chart of specific values - this one is pace
+    passing_categories = ['vision', 'crossing', 'freekick_accuracy', 'short_passing', 'long_passing', 'curve']
+    N = len(passing_categories)
+    values_of_categories = []
+    for index, value in passing.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], passing_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(shooting_categories)
+    #print(values_of_categories)
+    
+    
+    # display radar chart of specific values - this one is pace
+    dribbling_categories = ['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']
+    N = len(dribbling_categories)
+    values_of_categories = []
+    for index, value in dribbling.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], dribbling_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(shooting_categories)
+    #print(values_of_categories)
+    
+    
+    # display radar chart of specific values - this one is pace
+    defending_categories = ['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']
+    N = len(defending_categories)
+    values_of_categories = []
+    for index, value in defending.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], defending_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(shooting_categories)
+    #print(values_of_categories)
+    
+    # display radar chart of specific values - this one is pace
+    physicality_categories = ['jumping', 'stamina', 'strength', 'aggression']
+    N = len(physicality_categories)
+    values_of_categories = []
+    for index, value in physicality.items():
+                values_of_categories.append(value)
+    values_of_categories += values_of_categories[:1]
+    
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+    
+    plt.polar(angles, values_of_categories)
+    # color the area inside the polygon
+    plt.fill(angles, values_of_categories, alpha=0.3)
+    
+    plt.xticks(angles[:-1], physicality_categories)
+    
+    #ax.set_rlabel_position(0)
+    plt.yticks([25, 50, 76,], color = "black", size = 7)
+    plt.ylim(0,100)
+    
+    plt.show()
+    #print(shooting_categories)
+    #print(values_of_categories)
+    
+    # radar chart code retrieved from https://medium.com/python-in-plain-english/radar-chart-basics-with-pythons-matplotlib-ba9e002ddbcd
 
 """intro()"""
 # calls/executes the intro() function
@@ -173,5 +336,6 @@ physicality = ['jumping', 'stamina', 'strength', 'aggression']
 # calls/executes the get_ingame_stats() function
 """get_player_info()"""
 # calls/executes the get_player_info() function
-"""get_career_mode_info()"""
+""""get_career_mode_info()"""
 # calls/executes the get_career_mode_info() function
+compare_player_stats()
