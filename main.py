@@ -9,6 +9,9 @@ import pandas as pd
 # imports the pandas library
 # assigns it to the word 'pd', as this is shorter it saves time because we don't have to write 'pandas' each time
 # we use this module, instead just write 'pd'
+import matplotlib.pyplot as plt
+# imports the matplotlib.pyplot library and assigns to plt
+# used this module for display graphs about data
 
 def intro():
     # defines the function for the introduction of the user
@@ -115,7 +118,8 @@ def get_ingame_stats():
                 print(f"{index} - {value}")
             break
         except:
-            print("\nThat was no valid player name. Try again or enter 'EXIT' to stop the application.")        
+            print("\nThat was no valid player name. It must be the player's exact name.")
+            print("Try again or enter 'EXIT' to stop the application.")         
     
 def get_player_info():
     while True:
@@ -131,8 +135,34 @@ def get_player_info():
                 print(f"{index} - {value}")
             break
         except:
-            print("\nThat was no valid player name. Try again or enter 'EXIT' to stop the application.")        
-    
+            print("\nThat was no valid player name. It must be the player's exact name.")
+            print("Try again or enter 'EXIT' to stop the application.")        
+
+def get_career_mode_info():
+    while True:
+        try:
+            desired_player = (input(str("Input the player you want to search for: ")))
+            if desired_player == "EXIT":
+                break
+            player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+            player_stats = player_stats_column.loc[desired_player]
+            ingame_stats = player_stats[['full_name', 'positions', 'nationality', 'overall_rating', 'potential', 'value_euro', 'wage_euro', 'release_clause_euro', 'club_team', 'club_rating', 'club_position', 'club_jersey_number', 'club_join_date', 'contract_end_year', 'national_team', 'national_rating', 'national_team_position', 'national_jersey_number', 'LS', 'ST', 'RS', 'LW', 'LF', 'CF', 'RF', 'RW', 'LAM', 'CAM', 'RAM', 'LM', 'LCM', 'CM', 'RCM', 'RM', 'LWB', 'LDM', 'CDM', 'RDM', 'RWB', 'LB', 'LCB', 'CB', 'RCB', 'RB' ]] 
+            print("\nHere is the career mode information for '" + desired_player + "': \n")
+            for index, value in ingame_stats.items():
+                print(f"{index} - {value}")
+            break
+        except:
+            print("\nThat was no valid player name. It must be the player's exact name.")
+            print("Try again or enter 'EXIT' to stop the application.")  
+
+
+pace = ['acceleration', 'sprint_speed']
+shooting = ['postioning', 'finishing', 'shot_power', 'long_shots', 'volleys', 'penalties']
+passing = ['vision', 'crossing', 'freekick_accuracy', 'short_passing', 'long_passing', 'curve']
+driblling = ['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']
+defedning = ['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']
+physicality = ['jumping', 'stamina', 'strength', 'aggression']
+
 """intro()"""
 # calls/executes the intro() function
 """"search_database()"""
@@ -143,4 +173,5 @@ def get_player_info():
 # calls/executes the get_ingame_stats() function
 """get_player_info()"""
 # calls/executes the get_player_info() function
-
+"""get_career_mode_info()"""
+# calls/executes the get_career_mode_info() function
