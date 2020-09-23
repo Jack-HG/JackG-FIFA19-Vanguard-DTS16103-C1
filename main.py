@@ -15,6 +15,25 @@ import matplotlib.pyplot as plt
 import math
 # imported to use pi
 
+def menu():
+    choice = (int(input("Enter a number for what you want to do: \n 1. Search the database\n 2. Get player stats\n 3. Get in-game stats\n 4. Get player info\n 5. Get career mode info\n 6. Get radar chart of in-game categories")))
+    while choice not in [1, 2, 3, 4, 5, 6]:
+            print("It must be a number between 1 - 7")
+            choice = (int(input("Enter a number for what you want to do: \n 1. Search the database for a player's correct name\n 2. Get their in-game stats\n 3. Get the player information\n 4. Get career mode information\n 5. Display categories of in-game stats as a radar chart\n")))
+            
+    if choice == 1:
+        search_database()
+    elif choice == 2:
+        get_player_stats()
+    elif choice == 3:
+        get_ingame_stats()
+    elif choice == 4:
+        get_player_info()
+    elif choice == 5:
+        get_career_mode_info()
+    elif choice == 6:
+        radar_chart_stats()
+    
 def intro():
     # defines the function for the introduction of the user
     # decompostion - break down big problems into smaller problems. Smaller problems easier to solve, re-construct to solve big problem
@@ -49,6 +68,8 @@ def intro():
     # then for each line as it loops, it prints the counter variable, followed by a string ' - ', then the value variable
     # which displays the "counter ' - ' header name" or "1 - id"
     
+    menu()
+    
 
 def search_database():
     # this will be a fucntion that allows users to search for players in a database
@@ -62,7 +83,7 @@ def search_database():
     print("First we must make sure you are searching for the correct player")
     # explains what is needed before we search for the stats
     
-    desired_player = (input(str("Input the player you want to search for: "))).capitalize()
+    desired_player = (str(input("Input the player you want to search for: "))).capitalize()
     # gets a string input from the user to determine the player they want to search for
     # capitalize() is a function that capitalises the first letter, as each name in the dadtabase has a capital first letter, so this is needed to match properly
     list_of_players_found = []
@@ -89,7 +110,7 @@ def search_database():
         # prints no players found as the list length was zero
         
 def get_player_stats():
-    desired_player = input(str("Enter a player's name to see their statistics: "))
+    desired_player = (str(input("Enter a player's name to see their statistics: ")))
     pd.set_option('display.max_rows', None)
     player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
     # this saves just the column 'name' to the 'player_stats' variable. This means just the player names
@@ -109,7 +130,7 @@ def get_player_stats():
 def get_ingame_stats():
     while True:
         try:
-            desired_player = (input(str("Input the player you want to search for: ")))
+            desired_player = (str(input("Input the player you want to search for: ")))
             if desired_player == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
@@ -126,7 +147,7 @@ def get_ingame_stats():
 def get_player_info():
     while True:
         try:
-            desired_player = (input(str("Input the player you want to search for: ")))
+            desired_player = (str(input("Input the player you want to search for: ")))
             if desired_player == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
@@ -143,7 +164,7 @@ def get_player_info():
 def get_career_mode_info():
     while True:
         try:
-            desired_player = (input(str("Input the player you want to search for: ")))
+            desired_player = (str(input("Input the player you want to search for: ")))
             if desired_player == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
@@ -163,7 +184,7 @@ def radar_chart_stats():
     # referenced later in this function to decide whether the user wants to exit
     while True:
         try:
-            desired_player = (input(str("\n\nInput the player you want to search for: ")))
+            desired_player = (str(input("\n\nInput the player you want to search for: ")))
             if desired_player.upper() == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
@@ -361,10 +382,10 @@ def radar_chart_stats():
     
     if desired_player.upper() != "EXIT":
         print("\nThese are the categories to choose from: \n - pace\n - shooting\n - passing\n - dribbling\n - defending\n - physicality")
-        category_choice = (input(str("Input the category of statistics you want to search for: ")))    
+        category_choice = (str(input("Input the category of statistics you want to search for: ")))    
         while category_choice.lower() not in ["pace", "shooting", "passing", "dribbling", "defending", "physicality", "exit"]:
             print("It must be one of these categories: \n - pace\n - shooting\n - passing\n - dribbling\n - defending\n - physicality")
-            category_choice = (input(str("Input the category of statistics you want to search for: "))) 
+            category_choice = (str(input("Input the category of statistics you want to search for: "))) 
         
         if category_choice.lower() == "pace":
             pace_stats(desired_player, player_stats, pace)
@@ -400,8 +421,10 @@ def radar_chart_stats():
     # if the player enters 'exit' after upper case has been applied the application will stop
 
         
-"""intro()"""
+intro()
 # calls/executes the intro() function
+"""menu()"""
+# calls/executes the menu() function
 """"search_database()"""
 # calls/executes the search_database() function
 """get_player_stats()"""
@@ -412,4 +435,4 @@ def radar_chart_stats():
 # calls/executes the get_player_info() function
 """"get_career_mode_info()"""
 # calls/executes the get_career_mode_info() function
-radar_chart_stats()
+"""radar_chart_stats()"""
