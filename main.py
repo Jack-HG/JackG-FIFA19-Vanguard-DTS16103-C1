@@ -16,23 +16,50 @@ import math
 # imported to use pi
 
 def menu():
-    choice = (int(input("Enter a number for what you want to do: \n 1. Search the database\n 2. Get player stats\n 3. Get in-game stats\n 4. Get player info\n 5. Get career mode info\n 6. Get radar chart of in-game categories")))
-    while choice not in [1, 2, 3, 4, 5, 6]:
-            print("It must be a number between 1 - 7")
-            choice = (int(input("Enter a number for what you want to do: \n 1. Search the database for a player's correct name\n 2. Get their in-game stats\n 3. Get the player information\n 4. Get career mode information\n 5. Display categories of in-game stats as a radar chart\n")))
+    print("\n\n ---------------- THIS IS THE FIFA 19 VANGUARD HUB ---------------- \n\n")
+    print(" 1. Search the database for a player's correct name\n 2. Get their in-game stats\n 3. Get the player information\n 4. Get career mode information\n 5. Display categories of in-game stats as a radar chart\n")
+    loop = True
+    while loop is True:
+        # this will loop asking the user for a number, which decides what section the user goes to, until the user enters a valid entry
+        # essentially if the user inputs a number, an error will not be returned, so it will not loop
+        # if anything other than an integer is entered, like a string, an error will be returned and the 'except' code will run
+        try:
+            # tries this code until the user enters a valid entry
+            choice = (int(input("Enter a number for what you want to do: ")))
+            # specifies an integer must be inputted
             
-    if choice == 1:
-        search_database()
-    elif choice == 2:
-        get_player_stats()
-    elif choice == 3:
-        get_ingame_stats()
-    elif choice == 4:
-        get_player_info()
-    elif choice == 5:
-        get_career_mode_info()
-    elif choice == 6:
-        radar_chart_stats()
+            while choice not in [1, 2, 3, 4, 5, 6]:
+                # will loop asking for a number if the user enters a number not in this array
+                print("\n !!!! It must be a number between 1 - 6 !!!!")
+                choice = (int(input("Enter your decision: ")))
+            
+            # the choice entry decides which function is called
+            # if the user inputs 1, the function will be called to search the database and that code will be executed
+            if choice == 1:
+                loop = False
+                # loop is set to False, so that the original while loop will not iterate again
+                # without this, after the function that has been called is completed, this would be looped through again as the value would still be true
+                search_database()
+            elif choice == 2:
+                loop = False
+                get_player_stats()
+            elif choice == 3:
+                loop = False
+                get_ingame_stats()
+            elif choice == 4:
+                loop = False
+                get_player_info()
+            elif choice == 5:
+                loop = False
+                get_career_mode_info()
+            elif choice == 6:
+                loop = False
+                radar_chart_stats()
+        except:
+            # if input for choice returns an error this will be called
+            # then the while loop will loop again
+            print("\n !!!! You must input a number from the list !!!! ")
+
     
 def intro():
     # defines the function for the introduction of the user
@@ -181,10 +208,11 @@ def get_career_mode_info():
 
 def radar_chart_stats():
     exit_choice=False
+    print("\n\n")
     # referenced later in this function to decide whether the user wants to exit
     while True:
         try:
-            desired_player = (str(input("\n\nInput the player you want to search for: ")))
+            desired_player = (str(input("\nInput the player you want to search for: ")))
             if desired_player.upper() == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
