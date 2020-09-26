@@ -448,8 +448,58 @@ def radar_chart_stats():
     # if the player enters something that is not equal to 'EXIT' after upper case has been applied then the application will get the statistics
     # if the player enters 'exit' after upper case has been applied the application will stop
 
+
+def most_total_stats():
+    """index_of_player = 0"""
+    highest_stats_player_name = ''
+    
+    
+    # which player has the most stats?        
+    player_stats_df = pd.read_csv('fifa_cleaned.csv')
+    highest_total_stats = 0
+    for player_index in range(0, 17954):#17954
+        player_stats = player_stats_df.loc[player_index]
+        # .loc accesses a group of rows and columns
+        # this accesses the group and rows corresponding the variable 'player_index' which is passed, which iterates with the loop
+        # this index corresponds to the CSV file, it will print information pertaining to once player
+        # allowing us to anlayse each players stats one by one
         
-intro()
+        ingame_stats = player_stats[['crossing', 'finishing', 'heading_accuracy', 'short_passing', 'dribbling', 'curve', 'freekick_accuracy', 'long_passing', 'ball_control', 'acceleration', 'sprint_speed', 'agility', 'reactions', 'balance', 'shot_power', 'jumping', 'stamina', 'strength', 'long_shots', 'aggression', 'interceptions', 'positioning', 'vision', 'volleys', 'penalties', 'composure', 'marking', 'standing_tackle', 'sliding_tackle']] 
+        # defines all the in game stats, by column name
+        
+        player_name = player_stats[['name', 'full_name']]
+        # defines all the columns that contain player name information
+        
+        stat_list = []
+        # creates empty list so that we can add the values of the player's stats to this list
+        for index, value in ingame_stats.items():
+            stat_list.append(value)
+            # appends the value, which is the number relating to the stat, to the list
+        total_stats = (sum(stat_list))
+        # this adds together each value in the 'stat_list' list, and assigns it to teh value of 'total_stats'
+        # adds each stat of a player to get the total
+        
+        if total_stats > highest_total_stats:
+            highest_total_stats = total_stats
+            # value of the total
+            """index_of_player = player_index"""
+            highest_stats_player_name = player_name
+            # name of the player with the most stats
+        # this keeps track of each player's total in-game stats
+        # on each loop/player, it will check if the player has more in-game stats
+        # if the player has a larger total, it will replace the original variable with that new total
+        # therefore the variable always stores the value of the player with the highest stats from the already searched players            
+            
+    name_information_array = highest_stats_player_name.values
+    # highest_stats_player_name was originally a pandas series that contained the value and column titles of 'name' and 'full_name'
+    # .values seperates this series, of column title and values, into an array containing just the values, in this case the names
+
+    print("\nInformation of player with the most total statistics: \n")
+    print("    Name - " + name_information_array[0]) # displays the player name
+    print("    Full name - " + name_information_array[1]) # displays the player's full name
+    print("    Amount of stats - "+ str(highest_total_stats)) # displays the total number of stats
+    
+"""intro()"""
 # calls/executes the intro() function
 """menu()"""
 # calls/executes the menu() function
@@ -464,3 +514,6 @@ intro()
 """"get_career_mode_info()"""
 # calls/executes the get_career_mode_info() function
 """radar_chart_stats()"""
+# calls/executes the radar_chart_stats() function
+""""most_total_stats()"""
+# calls/executes teh most_total_stats() function
