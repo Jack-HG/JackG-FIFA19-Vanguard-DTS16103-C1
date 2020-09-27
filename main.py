@@ -13,11 +13,20 @@ import matplotlib.pyplot as plt
 # imports the matplotlib.pyplot library and assigns to plt
 # used this module for display graphs about data
 import math
-# imported to use pi
+# imported math library to use pi
+import time
+# imported time library to use delays in the application
 
 def menu():
     print("\n\n ---------------- THIS IS THE FIFA 19 VANGUARD HUB ---------------- \n\n")
-    print(" 1. Search the database for a player's correct name\n 2. Get their in-game stats\n 3. Get the player information\n 4. Get career mode information\n 5. Display categories of in-game stats as a radar chart\n")
+    print("0. Exit application! ")
+    print("1. Search the database for player names. Instructions:\n -  Search a player's name\n -  receive all players matching this name\n -  (Is important to know exact name for later features)")
+    print("2. Get ALL the data relating to your chosen player.")
+    print("3. Get the in-game statistics of a chosen player. E.g sprint speed, strength, sliding tackle, etc.")
+    print("4. Get the information of a chosen player. E.g. Full name, shirt number, nationality, etc.")
+    print("5. Get all the career mode information of a chosen player. E.g. Release clause value, potential rating, contract end date, etc.")
+    print("6. Choose a player, choose a category of in-game statistics and see these statistics displayed in a radar chart.")
+    print("7. Answer the question - Which player has the most in-game statistics in total? Who is the most all round player?")
     loop = True
     while loop is True:
         # this will loop asking the user for a number, which decides what section the user goes to, until the user enters a valid entry
@@ -28,13 +37,11 @@ def menu():
             choice = (int(input("Enter a number for what you want to do: ")))
             # specifies an integer must be inputted
             
-            while choice not in [1, 2, 3, 4, 5, 6]:
+            while choice not in [0, 1, 2, 3, 4, 5, 6, 7]:
                 # will loop asking for a number if the user enters a number not in this array
-                print("\n !!!! It must be a number between 1 - 6 !!!!")
+                print("\n !!!! It must be a number between 0 - 7 !!!!")
                 choice = (int(input("Enter your decision: ")))
             
-            # the choice entry decides which function is called
-            # if the user inputs 1, the function will be called to search the database and that code will be executed
             if choice == 1:
                 loop = False
                 # loop is set to False, so that the original while loop will not iterate again
@@ -42,7 +49,7 @@ def menu():
                 search_database()
             elif choice == 2:
                 loop = False
-                get_player_stats()
+                get_all_player_data()
             elif choice == 3:
                 loop = False
                 get_ingame_stats()
@@ -55,6 +62,18 @@ def menu():
             elif choice == 6:
                 loop = False
                 radar_chart_stats()
+            elif choice == 7:
+                loop = False
+                most_total_stats()
+            elif choice == 0:
+                loop = False
+                print("\nExiting...")
+                time.sleep(2) # delays 2 seconds
+                print("\nThanks for using the FIFA 19 Vanguard! ")
+              
+            # the choice entry decides which function is called
+            # if the user inputs 1, the function will be called to search the database and that code will be executed
+        
         except:
             # if input for choice returns an error this will be called
             # then the while loop will loop again
@@ -106,8 +125,8 @@ def search_database():
     df = pd.read_csv('fifa_cleaned.csv')
     player_data = df['name']
     # converts data frame into a series that includes just the column with header 'name'
-    print("Here you can search for stats belonging to a certain player")
-    print("First we must make sure you are searching for the correct player")
+    print("\n\nHere you can search for stats belonging to a certain player")
+    print("\nFirst we must make sure you are searching for the correct player")
     # explains what is needed before we search for the stats
     
     desired_player = (str(input("Input the player you want to search for: "))).capitalize()
@@ -136,8 +155,15 @@ def search_database():
         print("\nThis name was not found in the database")
         # prints no players found as the list length was zero
         
-def get_player_stats():
-    desired_player = (str(input("Enter a player's name to see their statistics: ")))
+    print("\nNow copy the desired players name. Use this exact copy when using other features.")
+        
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
+        
+def get_all_player_data():
+    desired_player = (str(input("Enter a player's name to see ALL their data: ")))
     pd.set_option('display.max_rows', None)
     player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
     # this saves just the column 'name' to the 'player_stats' variable. This means just the player names
@@ -153,6 +179,11 @@ def get_player_stats():
         # f string format
         # curly brackets represent what will be replaced. In this case index and value variables are placed in the string within the curly brackets
         # this function iterates through each index and corresponding value, prints the value followed by the dash followed by the statistic
+        
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
 
 def get_ingame_stats():
     while True:
@@ -169,7 +200,12 @@ def get_ingame_stats():
             break
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
-            print("Try again or enter 'EXIT' to stop the application.")         
+            print("Try again or enter 'EXIT' to stop the application.")  
+            
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
     
 def get_player_info():
     while True:
@@ -186,13 +222,18 @@ def get_player_info():
             break
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
-            print("Try again or enter 'EXIT' to stop the application.")        
+            print("Try again or enter 'EXIT' to stop the application.")    
+            
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
 
 def get_career_mode_info():
     while True:
         try:
             desired_player = (str(input("Input the player you want to search for: ")))
-            if desired_player == "EXIT":
+            if desired_player.upper() == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
             player_stats = player_stats_column.loc[desired_player]
@@ -203,12 +244,16 @@ def get_career_mode_info():
             break
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
-            print("Try again or enter 'EXIT' to stop the application.")  
-
+            print("Try again or enter 'EXIT' to stop the application.") 
+            
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
+            
 
 def radar_chart_stats():
     exit_choice=False
-    print("\n\n")
     # referenced later in this function to decide whether the user wants to exit
     while True:
         try:
@@ -405,8 +450,6 @@ def radar_chart_stats():
         #print(shooting_categories)
         #print(values_of_categories)
     
-    # radar chart code retrieved from https://medium.com/python-in-plain-english/radar-chart-basics-with-pythons-matplotlib-ba9e002ddbcd
-
     
     if desired_player.upper() != "EXIT":
         print("\nThese are the categories to choose from: \n - pace\n - shooting\n - passing\n - dribbling\n - defending\n - physicality")
@@ -435,9 +478,11 @@ def radar_chart_stats():
             # if exit_choice variable is true (player chose to exit rather than choose category)
             # then this is displayed and application ends
         else:
-            repeat_choice = input(str("Do you want to go again?\n - 'yes' to go again\n - 'no' to exit\n\n"))
+            repeat_choice = input(str("Do you want to go again?\n - 'yes' to go again\n - 'menu' to return to menu\n - 'no' to exit\n\n"))
             if repeat_choice.lower() == "yes":
                 radar_chart_stats()
+            elif repeat_choice.lower() == "menu":
+                menu()
             else:
                 print("\n\n -------------------------EXIT path chosen-------------------------")
             # if the player once to goes again by entering 'yes', recursion is applied
@@ -450,14 +495,16 @@ def radar_chart_stats():
 
 
 def most_total_stats():
-    """index_of_player = 0"""
-    highest_stats_player_name = ''
+    print("\n\nProcessing the data...\n")
+    print("\nThis may take a while...")
     
+    highest_stats_player_name = ''
+    # defining string variable for player
     
     # which player has the most stats?        
     player_stats_df = pd.read_csv('fifa_cleaned.csv')
     highest_total_stats = 0
-    for player_index in range(0, 17954):#17954
+    for player_index in range(0, 17954): # 17954 players based of how many index values there are
         player_stats = player_stats_df.loc[player_index]
         # .loc accesses a group of rows and columns
         # this accesses the group and rows corresponding the variable 'player_index' which is passed, which iterates with the loop
@@ -476,13 +523,12 @@ def most_total_stats():
             stat_list.append(value)
             # appends the value, which is the number relating to the stat, to the list
         total_stats = (sum(stat_list))
-        # this adds together each value in the 'stat_list' list, and assigns it to teh value of 'total_stats'
+        # this adds together each value in the 'stat_list' list, and assigns it to the value of 'total_stats'
         # adds each stat of a player to get the total
         
         if total_stats > highest_total_stats:
             highest_total_stats = total_stats
             # value of the total
-            """index_of_player = player_index"""
             highest_stats_player_name = player_name
             # name of the player with the most stats
         # this keeps track of each player's total in-game stats
@@ -499,7 +545,12 @@ def most_total_stats():
     print("    Full name - " + name_information_array[1]) # displays the player's full name
     print("    Amount of stats - "+ str(highest_total_stats)) # displays the total number of stats
     
-"""intro()"""
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    # return to menu or exit the application, determined by user input
+    
+intro()
 # calls/executes the intro() function
 """menu()"""
 # calls/executes the menu() function
