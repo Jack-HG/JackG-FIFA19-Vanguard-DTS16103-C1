@@ -24,9 +24,9 @@ The introduction and menu sections give brief explanations and pointers of how t
 
 It is a text based program, so largely surrounds entering values such as 'yes' or 'no', or a certain number - both to signify what the user wants to do. Another input would be a player name, to specify which player's data you want to see.
 
-Improvements:
-
-Future features:
+Improvements and future features:
+- Implemented a graphical user interface (GUI). This is because with text based applications it is hard to keep track of each element of a project, especially when user           interaction is involved. For example, having a numbered list, which requires the user to enter a number for what they want to do; which is complex and difficult to comprehend.   A GUI would allow me to implement a menu screen, that is user friendly and much more accessible. Clicking on a button would take the user to the desired path. This could also   allow for a drop down menu for player's, rather than having to input the exact name. Overall a GUI would be a welcome improvment to improve readability, accessibility and       make the program more user friendly.
+- For the radar chart feature, an improvement would be to be able to compare two player's statistics on the same chart. Such as - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cs.middlebury.edu%2F~candrews%2Fshowcase%2Finfovis_techniques_s16%2Fradar_chart%2F&psig=AOvVaw1nn9vuaAskyVL4M5kcn020&ust=1601314130057000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC195XuiewCFQAAAAAdAAAAABAD - this would allow people to compare their favourite player's, meaning they could pick the better player.                   The visualisation of this comparison would make things much easier for the user.
 
 References to libraries and open source resources:
 - https://www.geeksforgeeks.org/python-pandas-dataframe/ - describes what a 'dataframe' is in the pandas library
