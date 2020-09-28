@@ -31,6 +31,12 @@ Improvements and future features:
 - For the radar chart feature, an improvement would be to be able to compare two player's statistics on the same chart. Such as - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cs.middlebury.edu%2F~candrews%2Fshowcase%2Finfovis_techniques_s16%2Fradar_chart%2F&psig=AOvVaw1nn9vuaAskyVL4M5kcn020&ust=1601314130057000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC195XuiewCFQAAAAAdAAAAABAD - this would allow people to compare their favourite player's, meaning they could pick the better player.                   The visualisation of this comparison would make things much easier for the user.
 - Allow for more players to be displayed on the 'top 20 players' bar chart. This was not included as it was hard to read.
 
+CSV file and data source:
+- Retrieved from open source - https://data.world/raghav333/fifa-players/workspace/project-summary?agentid=raghav333&datasetid=fifa-players 
+- "FIFA PLAYERS dataset"
+- "The dataset contains around 18000 fifa players scraped from sofifa.com"
+- "It has over 88 features (columns)" 
+
 References to libraries and open source resources:
 - https://www.geeksforgeeks.org/python-pandas-dataframe/ - describes what a 'dataframe' is in the pandas library
 - https://medium.com/python-in-plain-english/radar-chart-basics-with-pythons-matplotlib-ba9e002ddbcd
