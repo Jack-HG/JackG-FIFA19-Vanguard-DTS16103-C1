@@ -17,7 +17,7 @@ For instance this application:
 - displays the top 20 players in the form of a radar chart
 
 This application also answer's the following questions:
-- which player has the most total in-game stats? (who is the most all round player?
+- which player has the most total in-game stats? who is the most all round player?
 - who are the top 100 players by overall rating?
 
 How do you use it?
