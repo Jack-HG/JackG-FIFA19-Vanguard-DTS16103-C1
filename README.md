@@ -14,9 +14,11 @@ For instance this application:
 - can display information about the player like name, club, nationality, shirt number etc.
 - can display career mode information like player monetary value, release clause value, potential rating etc.
 - allows the player to specify a player, then specify which category of player they want to see. Then display the correlating       data the form of a radar chart. Visualising data in this way makes it much more readable.
+- displays the top 20 players in the form of a radar chart
 
 This application also answer's the following questions:
-- which player has the most total in-game stats? (who is the most all round player?)
+- which player has the most total in-game stats? (who is the most all round player?
+- who are the top 100 players by overall rating?
 
 How do you use it?
 
@@ -27,6 +29,7 @@ It is a text based program, so largely surrounds entering values such as 'yes' o
 Improvements and future features:
 - Implemented a graphical user interface (GUI). This is because with text based applications it is hard to keep track of each element of a project, especially when user           interaction is involved. For example, having a numbered list, which requires the user to enter a number for what they want to do; which is complex and difficult to comprehend.   A GUI would allow me to implement a menu screen, that is user friendly and much more accessible. Clicking on a button would take the user to the desired path. This could also   allow for a drop down menu for player's, rather than having to input the exact name. Overall a GUI would be a welcome improvment to improve readability, accessibility and       make the program more user friendly.
 - For the radar chart feature, an improvement would be to be able to compare two player's statistics on the same chart. Such as - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cs.middlebury.edu%2F~candrews%2Fshowcase%2Finfovis_techniques_s16%2Fradar_chart%2F&psig=AOvVaw1nn9vuaAskyVL4M5kcn020&ust=1601314130057000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIC195XuiewCFQAAAAAdAAAAABAD - this would allow people to compare their favourite player's, meaning they could pick the better player.                   The visualisation of this comparison would make things much easier for the user.
+- Allow for more players to be displayed on the 'top 20 players' bar chart. This was not included as it was hard to read.
 
 References to libraries and open source resources:
 - https://www.geeksforgeeks.org/python-pandas-dataframe/ - describes what a 'dataframe' is in the pandas library
@@ -37,3 +40,4 @@ Bibliography:
 - https://pandas.pydata.org/docs/ - the pandas library documentation
 - https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.html - matplotlib.pyplot library documentation
 - https://docs.python.org/3/library/math.html - math library documentation
+- https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.plot.html - used to gain knowledge on how to plot a bar chart
