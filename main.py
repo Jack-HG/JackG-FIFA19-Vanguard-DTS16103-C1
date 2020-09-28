@@ -27,6 +27,7 @@ def menu():
     print("5. Get all the career mode information of a chosen player. E.g. Release clause value, potential rating, contract end date, etc.")
     print("6. Choose a player, choose a category of in-game statistics and see these statistics displayed in a radar chart.")
     print("7. Answer the question - Which player has the most in-game statistics in total? Who is the most all round player?")
+    print("8. Display the top 100 players by overall rating in a list and displays top 20 in a bar chart")
     loop = True
     while loop is True:
         # this will loop asking the user for a number, which decides what section the user goes to, until the user enters a valid entry
@@ -37,9 +38,9 @@ def menu():
             choice = (int(input("Enter a number for what you want to do: ")))
             # specifies an integer must be inputted
             
-            while choice not in [0, 1, 2, 3, 4, 5, 6, 7]:
+            while choice not in [0, 1, 2, 3, 4, 5, 6, 7, 8]:
                 # will loop asking for a number if the user enters a number not in this array
-                print("\n !!!! It must be a number between 0 - 7 !!!!")
+                print("\n !!!! It must be a number between 0 - 8 !!!!")
                 choice = (int(input("Enter your decision: ")))
             
             if choice == 1:
@@ -65,6 +66,9 @@ def menu():
             elif choice == 7:
                 loop = False
                 most_total_stats()
+            elif choice == 8:
+                loop = False
+                top_players()
             elif choice == 0:
                 loop = False
                 print("\nExiting...")
@@ -550,8 +554,41 @@ def most_total_stats():
         menu()
     # return to menu or exit the application, determined by user input
     
+def top_players():
+    df = pd.read_csv('fifa_cleaned.csv')
+    print("\n\n The top 100 FIFA 19 players by overall rating: \n")
+    #print(df.sort_values('overall_rating')['name']['overall_rating'].tail(10))
+    top100_df = df.sort_values(by='overall_rating', ascending=False)[['name', 'overall_rating']].head(100)
+    # sorts the original data frame into a new data frame, that is sorted into descending order of the player's overall rating
+    # this is done by the 'sort_values()' function
+    # by='overall_rating' tells teh function to sort it by the column with this title
+    # asending=False, tells the function to sort it into descending order
+    # then I define that the only columns I want included in this data frame are the names and overall rating of the players
+    # .head(20) limits it to just the first 100 players
+
+    print(top100_df.to_string(index=False))
+    # this converts the top 100 players dataframe into a string, and removes the index, to make it more readable
+    
+    top20_df = df.sort_values(by='overall_rating', ascending=False)[['name', 'overall_rating']].head(20)
+    # creates a dataframe of top 20 players using same method as before
+    # displays top 20, as top 100 provided too much information, and chart was difficult to read as it was crowded
+    top20_df.plot(kind='bar', x='name', y='overall_rating', rot=90, ylim=(80, 95) , grid=True)
+    # using the dataframe of top 20 players, plots a bar chart, with the axis values being the player names and y values being their overall rating
+    # rot=90 rotates the names 90 degrees, so they are vertical, meaning they do not overlap and are easier to read
+    # grid=True, means the grid is turned on and turns the index to two, making it much easier to determine differnces in player ratings
+    # the y limit is also set between 80 and 95, this is because:
+        # each top 20 player rating is between these values
+        # prior to these limits, the graph was too hard to read and determine the difference in ratings
+        # this zooms in to between these values, making the differences much more apparent
+    plt.show()
+    # shows the chart in plots
+    
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+
 intro()
-# calls/executes the intro() function
+# calls/executes the intro() function  
 """menu()"""
 # calls/executes the menu() function
 """"search_database()"""
