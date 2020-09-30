@@ -193,7 +193,7 @@ def get_ingame_stats():
     while True:
         try:
             desired_player = (str(input("Input the player you want to search for: ")))
-            if desired_player == "EXIT":
+            if desired_player.upper() == "EXIT":
                 break
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
             player_stats = player_stats_column.loc[desired_player]
@@ -205,6 +205,14 @@ def get_ingame_stats():
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
             print("Try again or enter 'EXIT' to stop the application.")  
+    # while True will loop, repeatedly asking the user for a desired player, until the user either exits or enters a valid player
+    # if the player is not valid, the 'desired_player' will throw an error, jumping to the except section, and looping through again
+    # if the player is valid, the code continues, if the player entered is 'EXIT' then the loop will break and the application ends
+    # otherwise, the code continues, passing in the csv file, getting a the data related to the specific player
+    # defining the columns that we will be looking for, it tehn loops through these columns
+    # it will loop through the array of columns in the CSV, getting the index and then stat belonging to this column
+    # Then for each line, using a f-string that passes in the index, which is the player name, and the value, prints the stats
+    # this code is then repeated for the following functions, but with different in  column values
             
     key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
@@ -272,6 +280,7 @@ def radar_chart_stats():
             dribbling = player_stats[['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']]
             defending = player_stats[['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']]
             physicality = player_stats[['jumping', 'stamina', 'strength', 'aggression']]
+            # defining every stat by the statistics that make them up, by column header
             break
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
