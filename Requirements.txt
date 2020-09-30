@@ -6,3 +6,5 @@ To install matplotlib library:
 To install pandas library:
 
 	pip install pandas
+
+Also ensure fifa_cleaned.csv is saved in the same directory as main.py
