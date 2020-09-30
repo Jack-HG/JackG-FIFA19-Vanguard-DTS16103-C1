@@ -155,11 +155,11 @@ def search_database():
         print('\n'.join(list_of_players_found))
         # this join() function, displays the list without the brackets, but seperates them but '\n' which leaves a line
         # makes it more readable and user friendly
+        print("\nNow copy the desired players name and use this exact copy when using other features.")
     else:
-        print("\nThis name was not found in the database")
+        print("\nThis name was not found in the database. ")
         # prints no players found as the list length was zero
         
-    print("\nNow copy the desired players name. Use this exact copy when using other features.")
         
     key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
@@ -283,7 +283,7 @@ def radar_chart_stats():
             # defining every stat by the statistics that make them up, by column header
             break
         except:
-            print("\nThat was no valid player name. It must be the player's exact name.")
+            print("\nThat was not a valid player name. It must be the player's exact name.")
             print("Try again or enter 'EXIT' to stop the application.")
 
     def pace_stats(*args):
