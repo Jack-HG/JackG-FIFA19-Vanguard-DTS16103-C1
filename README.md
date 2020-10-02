@@ -15,10 +15,15 @@ For instance this application:
 - can display career mode information like player monetary value, release clause value, potential rating etc.
 - allows the player to specify a player, then specify which category of player they want to see. Then display the correlating       data the form of a radar chart. Visualising data in this way makes it much more readable.
 - displays the top 20 players in the form of a bar chart
+- gives an insight into the wages of players. With data analysis we can see visualisation of the correlation between wage and over rating and therefore perceived ability. Also correlation between wage and age.
+- gives basic data analyis data analysis such as mean, range, mode values. Also the distribution of skill move and weak foot values.
 
 This application also answer's the following questions:
 - which player has the most total in-game stats? who is the most all round player?
 - who are the top 100 players by overall rating?
+- what is the correlation between age and overall rating or age?
+- what is the heaviest, lightest, tallest, shortest, oldest, youngest value of players?
+- what is the distribution of weak foot and skill move values?
 
 How do you use it?
 
