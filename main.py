@@ -28,6 +28,8 @@ def menu():
     print("6. Choose a player, choose a category of in-game statistics and see these statistics displayed in a radar chart.")
     print("7. Answer the question - Which player has the most in-game statistics in total? Who is the most all round player?")
     print("8. Display the top 100 players by overall rating in a list and displays top 20 in a bar chart")
+    print("9. Get data anlysis insights into wages and if they correlated to player rating and age.")
+    print("10. Some short, simple data anlysis.")
     loop = True
     while loop is True:
         # this will loop asking the user for a number, which decides what section the user goes to, until the user enters a valid entry
@@ -38,9 +40,9 @@ def menu():
             choice = (int(input("Enter a number for what you want to do: ")))
             # specifies an integer must be inputted
             
-            while choice not in [0, 1, 2, 3, 4, 5, 6, 7, 8]:
+            while choice not in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
                 # will loop asking for a number if the user enters a number not in this array
-                print("\n !!!! It must be a number between 0 - 8 !!!!")
+                print("\n !!!! It must be a number from 0 - 10 !!!!")
                 choice = (int(input("Enter your decision: ")))
             
             if choice == 1:
@@ -69,6 +71,12 @@ def menu():
             elif choice == 8:
                 loop = False
                 top_players()
+            elif choice == 9:
+                loop = False
+                wage_insight()
+            elif choice == 10:
+                loop = False
+                data_analysis()
             elif choice == 0:
                 loop = False
                 print("\nExiting...")
@@ -605,6 +613,90 @@ def top_players():
     key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
     if key.upper() == "Y":
         menu()
+    
+def wage_insight(): 
+    print("\n\nPlease see graphs.")
+    fifa_df = pd.read_csv('fifa_cleaned.csv')
+    fifa_df.plot.scatter(x='overall_rating',y='wage_euro')
+    # plots scatter graph for all data, the x values using the overall ratings and the y value using the wages of players
+    plt.title('Correlation between rating and wage - all players')
+    # sets a title for the scatter graph
+    plt.show()
+    # shows the graph
+    print("\n\nCorrelation between rating and wage graph:")
+    print("\nConclusion drawn - positive correlation between rating and wage. Proves that players who rate higher, meaning they are better players, usually earn more")
+    
+    big_earners = fifa_df.loc[fifa_df['wage_euro'] > 300000]
+    # creates a smaller dataframe from the original, of all players earning above 300,000
+    big_earners.plot.scatter(x='age', y='wage_euro')
+    # plots scatter graph with age as the x value, and euros as the y value
+    plt.title('Correlation between age and wage - players earning above 300,000 euros')
+    # sets title for the graph
+    plt.show()
+    # shows the graph
+    print("\n\nCorrelation between age and wage (players earning over 300,000) graph:")
+    print("\nConclusion drawn - slight postive correlation between age and wage. Proves player wages may increase with wage, but not evident.")
+    
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    
+def data_analysis():
+    print("Please see graphs showing distribution of weak foot and skill move values. Also some basic data anlysis for facts about the data.\n\n")
+    
+    fifa_df = pd.read_csv('fifa_cleaned.csv')
+    average_rating = round(fifa_df['overall_rating'].mean())
+    # gets average of the 'overall_rating' column, then rounds to closest integer(whole number) using a pandas function .mean()
+    print(f"The average overall rating of FIFA 19 player is {average_rating}")
+    # uses f string to print the value
+    
+    most_common_rating = fifa_df['overall_rating'].mode()[0]
+    # gets most common value of the 'overall_rating' value using the .mode() function from pandas library
+    print(f"The most common rating is {most_common_rating}")
+    # uses f string to print the value
+    
+    min_rating = fifa_df['overall_rating'].min() 
+    max_rating = fifa_df['overall_rating'].max()
+    print(f"The lowest rating is {min_rating} and the highest rating is {max_rating}.")
+    
+    min_height = fifa_df['height_cm'].min()
+    max_height = fifa_df['height_cm'].max()
+    height_range = max_height - min_height
+    print(f"The tallest player is {max_height}cm, the shortest is {min_height}cm. That's a difference of {height_range}cm.")
+    
+    min_weight = fifa_df['weight_kgs'].min()
+    max_weight = fifa_df['weight_kgs'].max()
+    weight_range = round(max_weight - min_weight, 2)
+    # rounds to decimal places
+    print(f"The heaviest player is {max_weight}kg, the lightest is {min_weight}kg. That's a difference of {weight_range}kg.")
+    
+    oldest_player = fifa_df['age'].max()
+    youngest_player = fifa_df['age'].min()
+    age_range = oldest_player - youngest_player
+    print(f"The oldest player is {oldest_player} years old. The youngest is {youngest_player} years old. Thats a difference of {age_range} years.")
+    
+    weak_foot_rating_count = fifa_df.pivot_table(index = ['weak_foot(1-5)'], aggfunc ='size') 
+    # makes a smaller dataframe of the amount of times each weak foot rating shows in the database
+    weak_foot_rating_count.plot.pie(y="weak_foot(1-5)", title="Weak foot rating distribution");
+    # plots a pie chart of this data
+    plt.ylabel('Week foot value')
+    # adds a label to the graph
+    plt.title('Distribution of weak foot rating')
+    # adds a title to the graph
+    plt.show()
+    # shows the graph
+    
+    skill_move_rating_count = fifa_df.pivot_table(index = ['skill_moves(1-5)'], aggfunc ='size')  
+    skill_move_rating_count.plot.pie(subplots=True)
+    plt.ylabel('Skill move value')
+    plt.title('Distribution of skill move ratings')
+    plt.show()
+    
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    if key.upper() == "Y":
+        menu()
+    
+
 
 intro()
 # calls/executes the intro() function  
