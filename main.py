@@ -642,7 +642,7 @@ def wage_insight():
         menu()
     
 def data_analysis():
-    print("Please see graphs showing distribution of weak foot and skill move values. Also some basic data anlysis for facts about the data.\n\n")
+    print("\n\nPlease see graphs showing distribution of weak foot and skill move values. Also some basic data anlysis for facts about the data.\n\n")
     
     fifa_df = pd.read_csv('fifa_cleaned.csv')
     average_rating = round(fifa_df['overall_rating'].mean())
@@ -691,6 +691,7 @@ def data_analysis():
     plt.ylabel('Skill move value')
     plt.title('Distribution of skill move ratings')
     plt.show()
+    # same as previous graph but with skill move rating instead
     
     key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
     if key.upper() == "Y":
@@ -699,20 +700,4 @@ def data_analysis():
 
 
 intro()
-# calls/executes the intro() function  
-"""menu()"""
-# calls/executes the menu() function
-""""search_database()"""
-# calls/executes the search_database() function
-"""get_player_stats()"""
-# calls/executes the get_player_stats() function
-""""get_ingame_stats()"""
-# calls/executes the get_ingame_stats() function
-"""get_player_info()"""
-# calls/executes the get_player_info() function
-""""get_career_mode_info()"""
-# calls/executes the get_career_mode_info() function
-"""radar_chart_stats()"""
-# calls/executes the radar_chart_stats() function
-""""most_total_stats()"""
-# calls/executes teh most_total_stats() function
+# calls intro function, in order to start the whole program
