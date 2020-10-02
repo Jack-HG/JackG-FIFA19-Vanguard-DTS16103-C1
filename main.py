@@ -167,22 +167,31 @@ def search_database():
     # return to menu or exit the application, determined by user input
         
 def get_all_player_data():
-    desired_player = (str(input("Enter a player's name to see ALL their data: ")))
-    pd.set_option('display.max_rows', None)
-    player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
-    # this saves just the column 'name' to the 'player_stats' variable. This means just the player names
-    player_stats = player_stats_column.loc[desired_player]
-    # .loc method accesses a group of rows and columns by a label. Previously defined just the 'name' column. This allows us to search by 'name'
-    # so we pass a parameter, say 'L. Messi' this searches the previous data frame that stores just the player names column
-    # .loc will then access all data belonging to 'L.Messi' name. We then print this data. Assigns this to the 'player_stats' column
-    print("\n")
-    # print empty line to make displayed data more readable
-    for index, value in player_stats.items():
-        # iterates through the panda series 'player_stats'. Assigns the index column to the variable index and the corresponding statistic to the variable value
-        print(f"{index} - {value}")
-        # f string format
-        # curly brackets represent what will be replaced. In this case index and value variables are placed in the string within the curly brackets
-        # this function iterates through each index and corresponding value, prints the value followed by the dash followed by the statistic
+    while True:
+        try:
+            desired_player = (str(input("Enter a player's name to see ALL their data: ")))
+            if desired_player.upper() == "EXIT":
+                break
+            pd.set_option('display.max_rows', None)
+            # this option is a function in pandas that says that there is no limit to how much data is displayed
+            player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
+            # this saves just the column 'name' to the 'player_stats' variable. This means just the player names
+            player_stats = player_stats_column.loc[desired_player]
+            # .loc method accesses a group of rows and columns by a label. Previously defined just the 'name' column. This allows us to search by 'name'
+            # so we pass a parameter, say 'L. Messi' this searches the previous data frame that stores just the player names column
+            # .loc will then access all data belonging to 'L.Messi' name. We then print this data. Assigns this to the 'player_stats' column
+            print("\n")
+            # print empty line to make displayed data more readable
+            for index, value in player_stats.items():
+                # iterates through the panda series 'player_stats'. Assigns the index column to the variable index and the corresponding statistic to the variable value
+                print(f"{index} - {value}")
+                # f string format
+                # curly brackets represent what will be replaced. In this case index and value variables are placed in the string within the curly brackets
+                # this function iterates through each index and corresponding value, prints the value followed by the dash followed by the statistic
+            break
+        except:
+            print("\nThat was no valid player name. It must be the player's exact name.")
+            print("Try again or enter 'EXIT' to stop the application.")  
         
     key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
@@ -204,7 +213,8 @@ def get_ingame_stats():
             break
         except:
             print("\nThat was no valid player name. It must be the player's exact name.")
-            print("Try again or enter 'EXIT' to stop the application.")  
+            print("Try again or enter 'EXIT' to stop the application.") 
+             
     # while True will loop, repeatedly asking the user for a desired player, until the user either exits or enters a valid player
     # if the player is not valid, the 'desired_player' will throw an error, jumping to the except section, and looping through again
     # if the player is valid, the code continues, if the player entered is 'EXIT' then the loop will break and the application ends
