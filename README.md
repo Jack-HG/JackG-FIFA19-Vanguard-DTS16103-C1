@@ -14,7 +14,7 @@ For instance this application:
 - can display information about the player like name, club, nationality, shirt number etc.
 - can display career mode information like player monetary value, release clause value, potential rating etc.
 - allows the player to specify a player, then specify which category of player they want to see. Then display the correlating       data the form of a radar chart. Visualising data in this way makes it much more readable.
-- displays the top 20 players in the form of a radar chart
+- displays the top 20 players in the form of a bar chart
 
 This application also answer's the following questions:
 - which player has the most total in-game stats? who is the most all round player?
