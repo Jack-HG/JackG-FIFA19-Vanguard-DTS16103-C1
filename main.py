@@ -601,7 +601,7 @@ def most_total_stats():
     print("    Full name - " + name_information_array[1]) # displays the player's full name
     print("    Amount of stats - "+ str(highest_total_stats)) # displays the total number of stats
     
-    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
         menu()
     # return to menu or exit the application, determined by user input
@@ -635,7 +635,7 @@ def top_players():
     plt.show()
     # shows the chart in plots
     
-    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
         menu()
     
@@ -662,7 +662,7 @@ def wage_insight():
     print("\n\nCorrelation between age and wage (players earning over 300,000) graph:")
     print("\nConclusion drawn - slight postive correlation between age and wage. Proves player wages may increase with wage, but not evident.")
     
-    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
         menu()
     
@@ -722,7 +722,7 @@ def data_analysis():
     plt.show()
     # same as previous graph but with skill move rating instead
     
-    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Anything other input will end the application: "))
+    key = str(input("\n\n Enter 'Y', when you are ready, to return to menu. Any other input will end the application: "))
     if key.upper() == "Y":
         menu()
     

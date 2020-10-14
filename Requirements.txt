@@ -1,3 +1,5 @@
+This program was written and tested on windows 10.
+
 To install matplotlib library:
 
 	python -m pip install -U pip
