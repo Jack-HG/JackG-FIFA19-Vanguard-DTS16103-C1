@@ -35,6 +35,7 @@ def menu():
         # this will loop asking the user for a number, which decides what section the user goes to, until the user enters a valid entry
         # essentially if the user inputs a number, an error will not be returned, so it will not loop
         # if anything other than an integer is entered, like a string, an error will be returned and the 'except' code will run
+        # once user inputs a valid entry and can go to the next step in the program, the 'loop' variable is set to False to break the loop
         try:
             # tries this code until the user enters a valid entry
             choice = (int(input("Enter a number for what you want to do: ")))
@@ -44,8 +45,10 @@ def menu():
                 # will loop asking for a number if the user enters a number not in this array
                 print("\n !!!! It must be a number from 0 - 10 !!!!")
                 choice = (int(input("Enter your decision: ")))
+                # coverts entry to integer
             
             if choice == 1:
+                # simple if-elif statements, that will execute a certain function call depending on what number is entered
                 loop = False
                 # loop is set to False, so that the original while loop will not iterate again
                 # without this, after the function that has been called is completed, this would be looped through again as the value would still be true
@@ -94,7 +97,7 @@ def menu():
     
 def intro():
     # defines the function for the introduction of the user
-    # decompostion - break down big problems into smaller problems. Smaller problems easier to solve, re-construct to solve big problem
+    # decompostion - breaks down big problems into smaller problems. Smaller problems easier to solve, re-construct to solve big problem
     # good to use decomposition, as makes code more readable, easier to troubleshoot and the function can be re-used elsewhere
     
     print("\n\nHello and welcome to the FIFA 19 vanguard - a database of players in FIFA 19")
@@ -136,7 +139,8 @@ def search_database():
     
     df = pd.read_csv('fifa_cleaned.csv')
     player_data = df['name']
-    # converts data frame into a series that includes just the column with header 'name'
+    # converts data frame into a pandas series that includes just the column with header 'name'
+    # where a series is a one dimensional object, as opposed to the two dimensional data frame
     print("\n\nHere you can search for stats belonging to a certain player")
     print("\nFirst we must make sure you are searching for the correct player")
     # explains what is needed before we search for the stats
@@ -238,6 +242,9 @@ def get_ingame_stats():
     # return to menu or exit the application, determined by user input
     
 def get_player_info():
+    # this function works in the same way as previous but changes the column names
+    # this means it gets different infromation for the different application path choice
+    # however, it functions in exact same way as 'get_ingame_stats()'
     while True:
         try:
             desired_player = (str(input("Input the player you want to search for: ")))
@@ -260,6 +267,9 @@ def get_player_info():
     # return to menu or exit the application, determined by user input
 
 def get_career_mode_info():
+    # this function works in the same way as previous but changes the column names
+    # this means it gets different infromation for the different application path choice
+    # however, it functions in exact same way as 'get_ingame_stats()'
     while True:
         try:
             desired_player = (str(input("Input the player you want to search for: ")))
@@ -285,11 +295,16 @@ def get_career_mode_info():
 def radar_chart_stats():
     exit_choice=False
     # referenced later in this function to decide whether the user wants to exit
+    # will be set to True to exit this function
     while True:
+        # another try/except statement within a while loop that willl loop until it gets a valid player name
         try:
             desired_player = (str(input("\nInput the player you want to search for: ")))
             if desired_player.upper() == "EXIT":
                 break
+            # if user wants to exit, they input the word 'exit'
+            # and based on this if-statement, if the string input (when changed to all upper case) is equal to 'EXIT'
+            # the if statement will run, which is just to break the original while loop, and therefore exit this part of the program
             player_stats_column = pd.read_csv('fifa_cleaned.csv', index_col='name')
             player_stats = player_stats_column.loc[desired_player]
             pace = player_stats[['acceleration', 'sprint_speed']]
@@ -352,7 +367,8 @@ def radar_chart_stats():
     
     
     def shooting_stats(*args):
-        # display radar chart of specific values - this one is pace
+        # functions in the same way as 'pace_stats()' function but changes the column variables to display the correct stats
+        # display radar chart of specific values
         shooting_categories = ['positioning', 'finishing', 'shot_power', 'long_shots', 'volleys', 'penalties']
         N = len(shooting_categories)
         values_of_categories = []
@@ -378,7 +394,8 @@ def radar_chart_stats():
         #print(values_of_categories)
     
     def passing_stats(*args):
-        # display radar chart of specific values - this one is pace
+        # functions in the same way as 'pace_stats()' function but changes the column variables to display the correct stats
+        # display radar chart of specific values
         passing_categories = ['vision', 'crossing', 'freekick_accuracy', 'short_passing', 'long_passing', 'curve']
         N = len(passing_categories)
         values_of_categories = []
@@ -404,7 +421,8 @@ def radar_chart_stats():
         #print(values_of_categories)
     
     def dribbling_stats(*args):
-        # display radar chart of specific values - this one is pace
+        # functions in the same way as 'pace_stats()' function but changes the column variables to display the correct stats
+        # display radar chart of specific values
         dribbling_categories = ['agility', 'balance', 'reactions', 'ball_control', 'dribbling', 'composure']
         N = len(dribbling_categories)
         values_of_categories = []
@@ -430,7 +448,8 @@ def radar_chart_stats():
         #print(values_of_categories)
     
     def defending_stats(*args):
-        # display radar chart of specific values - this one is pace
+        # functions in the same way as 'pace_stats()' function but changes the column variables to display the correct stats
+        # display radar chart of specific values 
         defending_categories = ['interceptions', 'heading_accuracy', 'standing_tackle', 'sliding_tackle']
         N = len(defending_categories)
         values_of_categories = []
@@ -456,7 +475,8 @@ def radar_chart_stats():
         #print(values_of_categories)
     
     def physicality_stats(*args):
-        # display radar chart of specific values - this one is pace
+        # functions in the same way as 'pace_stats()' function but changes the column variables to display the correct stats
+        # display radar chart of specific values
         physicality_categories = ['jumping', 'stamina', 'strength', 'aggression']
         N = len(physicality_categories)
         values_of_categories = []
@@ -483,16 +503,18 @@ def radar_chart_stats():
     
     
     if desired_player.upper() != "EXIT":
+        # if the string is not equal to 'EXIT' when changed to uppercase (meaning they have entered a valid player name) this code will execute
         print("\nThese are the categories to choose from: \n - pace\n - shooting\n - passing\n - dribbling\n - defending\n - physicality")
         category_choice = (str(input("Input the category of statistics you want to search for: ")))    
         while category_choice.lower() not in ["pace", "shooting", "passing", "dribbling", "defending", "physicality", "exit"]:
+            # if the player's input is not in this list, it will ask again and this will keep looping until a value from the list is entered
             print("It must be one of these categories: \n - pace\n - shooting\n - passing\n - dribbling\n - defending\n - physicality")
             category_choice = (str(input("Input the category of statistics you want to search for: "))) 
         
         if category_choice.lower() == "pace":
-            pace_stats(desired_player, player_stats, pace)
+            pace_stats(desired_player, player_stats, pace) 
         elif category_choice.lower() == "shooting":
-            shooting_stats(desired_player, player_stats, pace)
+            shooting_stats(desired_player, player_stats, pace) # the 'pace' variable is poorly named and should be the relevant statistic
         elif category_choice.lower() == "passing":
             passing_stats(desired_player, player_stats, pace)
         elif category_choice.lower() == "dribbling":
@@ -503,6 +525,8 @@ def radar_chart_stats():
             physicality_stats(desired_player, player_stats, pace)  
         else:
             exit_choice=True
+        # if-elif-else statement that decides which statistics the user wants to display a radar chart about
+        # will call the correct function based on the string input, then passing the correct information
             
         if exit_choice:
             print("\n\n -------------------------EXIT path chosen-------------------------")
@@ -535,6 +559,7 @@ def most_total_stats():
     # which player has the most stats?        
     player_stats_df = pd.read_csv('fifa_cleaned.csv')
     highest_total_stats = 0
+    # initialises the variable to 0 so it can be used as comparison later
     for player_index in range(0, 17954): # 17954 players based of how many index values there are
         player_stats = player_stats_df.loc[player_index]
         # .loc accesses a group of rows and columns
@@ -644,8 +669,12 @@ def wage_insight():
 def data_analysis():
     print("\n\nPlease see graphs showing distribution of weak foot and skill move values. Also some basic data anlysis for facts about the data.\n\n")
     
+    # The following statemetns work by obtaining a column from the overall pandas dataframe as a singular pandas series
+    # Then on this pandas series, performs a function that calculates the mean, mode, min and max
+    
     fifa_df = pd.read_csv('fifa_cleaned.csv')
     average_rating = round(fifa_df['overall_rating'].mean())
+    # retrieves the 'overall_rating' column as a pandas series, then performs a function on this pandas series to retrieve the mean of the values
     # gets average of the 'overall_rating' column, then rounds to closest integer(whole number) using a pandas function .mean()
     print(f"The average overall rating of FIFA 19 player is {average_rating}")
     # uses f string to print the value
