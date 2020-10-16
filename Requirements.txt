@@ -1,13 +1,13 @@
 This program was written and tested on windows 10.
 
-You will need to install the 'matplotlib' and 'pandas' libraries. For how to do so, please see below.
+You will need to install the 'matplotlib.pyplot' and 'pandas' libraries. For how to do so, please see below.
 
-To install matplotlib library:
+To install 'matplotlib.pyplot' library:
 
 	python -m pip install -U pip
 	python -m pip install -U matplotlib
 
-To install pandas library:
+To install 'pandas' library:
 
 	pip install pandas
 
