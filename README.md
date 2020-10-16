@@ -21,7 +21,7 @@ For instance this application:
 This application also answer's the following questions:
 - which player has the most total in-game stats? who is the most all round player?
 - who are the top 100 players by overall rating?
-- what is the correlation between age and overall rating or age?
+- what is the correlation between wage and overall rating or age?
 - what is the heaviest, lightest, tallest, shortest, oldest, youngest value of players?
 - what is the distribution of weak foot and skill move values?
 
