@@ -353,7 +353,7 @@ def radar_chart_stats():
         # gives the graph the correct labels at each point
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         # sets labels for each circle, the color of text and the size of the text
         plt.ylim(0,100)
         # says the values must have a minimum of 0 and maximum of 100
@@ -386,7 +386,7 @@ def radar_chart_stats():
         plt.xticks(angles[:-1], shooting_categories)
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         plt.ylim(0,100)
         
         plt.show()
@@ -413,7 +413,7 @@ def radar_chart_stats():
         plt.xticks(angles[:-1], passing_categories)
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         plt.ylim(0,100)
         
         plt.show()
@@ -440,7 +440,7 @@ def radar_chart_stats():
         plt.xticks(angles[:-1], dribbling_categories)
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         plt.ylim(0,100)
         
         plt.show()
@@ -467,7 +467,7 @@ def radar_chart_stats():
         plt.xticks(angles[:-1], defending_categories)
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         plt.ylim(0,100)
         
         plt.show()
@@ -494,7 +494,7 @@ def radar_chart_stats():
         plt.xticks(angles[:-1], physicality_categories)
         
         #ax.set_rlabel_position(0)
-        plt.yticks([25, 50, 76,], color = "black", size = 7)
+        plt.yticks([25, 50, 75,], color = "black", size = 11)
         plt.ylim(0,100)
         
         plt.show()
